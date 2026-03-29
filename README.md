@@ -1,4 +1,4 @@
-# IT Infrastructure Project Dashboard
+# IT Project Dashboard
 
 ## Project Overview
 
