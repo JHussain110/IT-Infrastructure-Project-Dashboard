@@ -1,6 +1,6 @@
-# Excel IT Infrastructure Project Dashboard
+# IT Infrastructure Project Dashboard
 
-Project Overview
+## Project Overview
 
 In this project I built an Excel dashboard to track a small IT infrastructure setup.
 
@@ -8,162 +8,220 @@ The aim was to simulate how tasks are managed and monitored in a real IT environ
 
 The project includes tasks such as:
 
-• Active Directory setup
-• DNS and DHCP configuration
-• User account creation
-• Network setup and testing
+- Active Directory setup
+- DNS and DHCP configuration
+- User account creation
+- Network setup and testing
 
 The focus was on tracking progress, assigning work, and getting a clear overview of how the project is moving.
 
-Project Structure
+---
+
+# Project Structure
 
 The workbook is split into two main sheets:
 
-Tasks
-Dashboard
+1. Tasks
+2. Dashboard
 
 The Tasks sheet holds all the raw data and calculations.
 
-The Dashboard is where that data is summarised and visualised, so it’s easier to understand at a glance.
+The Dashboard is where that data is summarised and visualised, so it is easier to understand at a glance.
 
-Tools and Features Used
+![Tasks Table](screenshots/tasks_table.png)
 
-• Microsoft Excel
-• Tables
-• Formulas
-• Data Validation (dropdown lists)
-• Pivot Tables
-• Slicers
-• Pie Chart
+---
 
-Tasks Sheet Setup
-Creating the Task Table
+# Tools and Features Used
+
+- Microsoft Excel
+- Tables
+- Formulas
+- Data Validation (dropdown lists)
+- Pivot Tables
+- Slicers
+- Pie Chart
+
+---
+
+# Tasks Sheet Setup
+
+## Creating the Task Table
 
 I created a structured table to store all project data:
 
-• Task ID
-• Task Name
-• Assigned To
-• Start Date
-• End Date
-• Duration
-• Status
-• % Complete
-• Priority
-• Risk
+- Task ID
+- Task Name
+- Assigned To
+- Start Date
+- End Date
+- Duration
+- Status
+- % Complete
+- Priority
+- Risk
 
 Each row represents a task, and each column tracks a specific part of that task.
 
 This acts as the central dataset for everything in the dashboard.
 
-Duration Calculation
+---
+
+# Duration Calculation
 
 To calculate how long each task takes, I used:
 
+```excel
 =[@End]-[@Start]
-Why this works
+```
+### Why this works
 
 Excel stores dates as numbers in the background, so subtracting one date from another returns the number of days between them.
 
-What this does
+### What this does
 
-This means I don’t have to manually calculate durations. If I change a start or end date, the duration updates automatically.
+This means I do not have to manually calculate durations. If I change a start or end date, the duration updates automatically.
 
-Data Validation (Dropdown Lists)
+---
+
+## Data Validation (Dropdown Lists)
 
 To keep the data clean and consistent, I used dropdown lists.
 
-Status
+### Status
 
-• Completed
-• In Progress
-• Not Started
+- Completed  
+- In Progress  
+- Not Started  
 
-Priority / Risk
+### Priority / Risk
 
-• Low
-• Medium
-• High
+- Low  
+- Medium  
+- High  
 
-How I added them
-Selected the column
-Went to Data → Data Validation
-Chose List
-Entered the values
-Why I used this
+### How I added them
 
-Without dropdowns, it’s easy to enter slightly different values (e.g. “complete” vs “Completed”), which would break formulas and summaries.
+1. Selected the column  
+2. Went to **Data → Data Validation**  
+3. Chose **List**  
+4. Entered the values  
 
-Using lists ensures everything stays standardised and reliable.
+### Why I used this
 
-Dashboard Sheet
-Pivot Table (Task Progress)
+Without dropdowns, it is easy to enter slightly different values such as:
+
+- complete  
+- Completed  
+- done  
+
+This would break formulas and summaries.
+
+Using dropdown lists ensures the data stays consistent and reliable.
+
+---
+
+## Dashboard Sheet
+
+### Pivot Table (Task Progress)
 
 I created a pivot table to summarise task progress.
 
-Setup:
+#### Setup
 
-• Rows → Task Name
-• Values → % Complete (Average)
+- Rows → Task Name  
+- Values → % Complete (Average)  
 
-Why I used average
+### Why I used average
 
-If I summed percentages, the result wouldn’t make sense (it could go over 100%).
+If I summed percentages, the result would not make sense because it could go over 100%.
 
-Using average gives a more accurate view of how complete each task is.
+For example:
 
-What this does
+- 100% + 60% + 0% = 160%  
 
-It lets me quickly see the progress of each task without scanning the full table.
+Using average gives a more accurate representation of progress.
 
-Slicers (Filters)
+### What this does
+
+It allows me to quickly see how complete each task is without scanning the full dataset.
+
+![Pivot Table](screenshots/pivot_table.png)
+
+---
+
+## Slicers (Filters)
 
 I added slicers for:
 
-• Status
-• Assigned To
+- Status  
+- Assigned To  
 
-Why I used slicers
+### Why I used slicers
 
 They make the dashboard interactive.
 
-Instead of manually filtering the table, I can click a button to:
+Instead of manually filtering the table, I can quickly:
 
-view only tasks in progress
-check what a specific person is working on
+- view only tasks in progress  
+- check what a specific person is working on  
 
-This makes the dashboard quicker and easier to use.
+This makes the dashboard faster and easier to use.
 
-Status Summary Table
+---
 
-I created a small table to count how many tasks fall into each status:
+## Status Summary Table
 
-Status	Count
-Completed	
-In Progress	
-Not Started	
-Formulas used
+I created a small summary table to count how many tasks fall into each status:
+
+- Completed  
+- In Progress  
+- Not Started  
+
+### Formulas used
+
+```excel
 =COUNTIF(G:G,"Completed")
 =COUNTIF(G:G,"In Progress")
 =COUNTIF(G:G,"Not Started")
-Why I used this
+```
+### Why I used this
 
-The raw data isn’t suitable for charts directly.
+The raw data is not suitable for charts directly.
 
-This step converts it into a simple summary that can be visualised.
+This step converts it into a simple summary that can be visualised properly.
 
 It also updates automatically whenever the task statuses change.
 
-Pie Chart (Project Overview)
+---
 
-I created a pie chart using the summary table.
+## Pie Chart (Project Overview)
 
-Why I used this
+I created a pie chart using the status summary table.
+
+### Why I used this
 
 It gives a quick visual breakdown of the project:
 
-• how much is completed
-• what is still in progress
-• what hasn’t been started
+- how much is completed  
+- what is still in progress  
+- what has not been started  
 
-This is useful for reporting, where you want a quick overview rather than detailed data.
+This is useful for quickly understanding the overall state of the project.
+
+![Pie Chart](screenshots/pie_chart.png)
+
+---
+
+## What I Learned
+
+This project helped me understand how task tracking and reporting works in practice.
+
+I improved my ability to:
+
+- structure and organise data clearly  
+- use formulas to automate calculations  
+- summarise data using pivot tables  
+- build simple dashboards for quick insights  
+
+It also showed me how small changes, such as dropdown lists and summary tables, make a big difference in keeping data accurate and usable.
